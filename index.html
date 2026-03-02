@@ -492,31 +492,47 @@
             }
         }
 
-        // ========== CHART ==========
        // ========== CHART ==========
 const ctx = document.getElementById('goldChart').getContext('2d');
 const goldChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: ['20 Jan', '21 Jan', '22 Jan', '23 Jan', '24 Jan', '25 Jan', '26 Jan'],
-        datasets: [{
-            label: '22K Gold (₹ per gram)',
-            data: [15200, 15180, 15150, 15130, 15100, 15080, 15288],
-            borderColor: '#D4AF37',
-            backgroundColor: 'rgba(212, 175, 55, 0.1)',
-            borderWidth: 4,
-            fill: true,
-            tension: 0.4,
-            pointRadius: 5,
-            pointBackgroundColor: '#D4AF37'
-        }]
+        datasets: [
+            {
+                label: '22K Gold (₹ per gram)',
+                data: [15200, 15180, 15150, 15130, 15100, 15080, 15288],
+                borderColor: '#D4AF37',
+                backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                borderWidth: 4,
+                fill: false,
+                tension: 0.4,
+                pointRadius: 5,
+                pointBackgroundColor: '#D4AF37'
+            },
+            {
+                label: '24K Gold (₹ per gram)',
+                data: [15884, 15863, 15832, 15811, 15780, 15759, 15976],
+                borderColor: '#B8860B',
+                backgroundColor: 'rgba(184, 134, 11, 0.1)',
+                borderWidth: 4,
+                fill: false,
+                tension: 0.4,
+                pointRadius: 5,
+                pointBackgroundColor: '#B8860B'
+            }
+        ]
     },
     options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                labels: { color: '#B8860B', font: { size: 14 } }
+                labels: { 
+                    color: '#333', 
+                    font: { size: 14 },
+                    usePointStyle: true
+                }
             }
         },
         scales: {
@@ -535,26 +551,31 @@ function switchGraph(range) {
     document.querySelectorAll('.time-toggle button').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
     
-    // Update chart data based on range
-    let newData = [];
     let newLabels = [];
+    let newData22k = [];
+    let newData24k = [];
     
     if (range === '7days') {
         newLabels = ['20 Jan', '21 Jan', '22 Jan', '23 Jan', '24 Jan', '25 Jan', '26 Jan'];
-        newData = [15200, 15180, 15150, 15130, 15100, 15080, 15288];
+        newData22k = [15200, 15180, 15150, 15130, 15100, 15080, 15288];
+        newData24k = [15884, 15863, 15832, 15811, 15780, 15759, 15976];
     } else if (range === '30days') {
         newLabels = ['1 Feb', '5 Feb', '10 Feb', '15 Feb', '20 Feb', '25 Feb', '1 Mar'];
-        newData = [14900, 15000, 15100, 15200, 15150, 15200, 15288];
+        newData22k = [14900, 15000, 15100, 15200, 15150, 15200, 15288];
+        newData24k = [15570, 15675, 15780, 15884, 15832, 15884, 15976];
     } else if (range === '3months') {
         newLabels = ['Jan', 'Feb', 'Mar'];
-        newData = [14800, 15000, 15288];
+        newData22k = [14800, 15000, 15288];
+        newData24k = [15466, 15675, 15976];
     } else {
         newLabels = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-        newData = [14500, 14700, 14900, 15100, 15200, 15288];
+        newData22k = [14500, 14700, 14900, 15100, 15200, 15288];
+        newData24k = [15152, 15362, 15570, 15780, 15884, 15976];
     }
     
     goldChart.data.labels = newLabels;
-    goldChart.data.datasets[0].data = newData;
+    goldChart.data.datasets[0].data = newData22k;
+    goldChart.data.datasets[1].data = newData24k;
     goldChart.update();
 }
         // ========== TABLE DATA ==========
