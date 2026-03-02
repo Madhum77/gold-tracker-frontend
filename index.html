@@ -491,17 +491,15 @@
                     </button>
                 </div>
                 
-                <div class="active-alerts" style="margin-top: 25px;">
-                    <h3 style="color: var(--gold-dark); margin-bottom: 15px;">Active Alerts</h3>
-                    <div style="background: var(--gold-bg); padding: 15px; border-radius: 10px; margin-bottom: 10px;">
-                        <strong>22K Gold > ₹16,000</strong> • Email notification • Created: 25 Feb 2026
-                    </div>
-                    <div style="background: var(--gold-bg); padding: 15px; border-radius: 10px;">
-                        <strong>24K Gold < ₹15,500</strong> • Email notification • Created: 20 Feb 2026
-                    </div>
-                </div>
-            </div>
-
+               <div class="active-alerts" style="margin-top: 25px;" id="activeAlertsContainer">
+    <h3 style="color: var(--gold-dark); margin-bottom: 15px;">Active Alerts</h3>
+    <div id="activeAlertsList">
+        <!-- Alerts will be loaded here from backend -->
+        <div style="background: var(--gold-bg); padding: 15px; border-radius: 10px; text-align: center; color: #666;">
+            No active alerts. Set one above!
+        </div>
+    </div>
+</div>
             <div class="card" style="grid-column: span 2;">
                 <div class="card-title">
                     <i class="fas fa-history"></i>
