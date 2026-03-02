@@ -641,18 +641,46 @@
             alert('❌ Failed to set alert.');
         }
     }
-
-    function predictPrice(timeframe) {
-        document.querySelectorAll('.predictor .time-toggle button').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-        loadPrediction();
+function predictPrice(timeframe) {
+    // Update button active state
+    document.querySelectorAll('.predictor .time-toggle button').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Get current price and calculate prediction based on timeframe
+    const currentPrice = parseFloat(document.querySelector('.rate-box .price').textContent.replace(/[^0-9.-]+/g, ''));
+    
+    let predictedPrice, change, confidence;
+    
+    if (timeframe === 'week') {
+        predictedPrice = Math.round(currentPrice * 1.03); // +3%
+        change = Math.round(predictedPrice - currentPrice);
+        confidence = 85;
+    } else if (timeframe === 'month') {
+        predictedPrice = Math.round(currentPrice * 1.07); // +7%
+        change = Math.round(predictedPrice - currentPrice);
+        confidence = 72;
+    } else if (timeframe === 'quarter') {
+        predictedPrice = Math.round(currentPrice * 1.12); // +12%
+        change = Math.round(predictedPrice - currentPrice);
+        confidence = 65;
     }
-
-    function updatePrediction() {
-        loadPrediction();
+    
+    // Update the display
+    document.getElementById('predictedPrice').textContent = '₹' + predictedPrice.toLocaleString('en-IN');
+    
+    // Update the expected increase text
+    const increaseText = document.querySelector('.predictor-result p');
+    if (increaseText) {
+        increaseText.innerHTML = `Expected increase: <strong>₹${change} (${((change/currentPrice)*100).toFixed(2)}%)</strong>`;
     }
-
-    const ctx = document.getElementById('goldChart').getContext('2d');
+    
+    // Update confidence
+    const confidenceDiv = document.querySelector('.confidence');
+    if (confidenceDiv) {
+        confidenceDiv.textContent = confidence + '% Confidence';
+    }
+}
+      const ctx = document.getElementById('goldChart').getContext('2d');
     const goldChart = new Chart(ctx, {
         type: 'line',
         data: {
