@@ -500,34 +500,29 @@
         </div>
     </div>
 </div>
-            <div class="card" style="grid-column: span 2;">
-                <div class="card-title">
-                    <i class="fas fa-history"></i>
-                    <h2>Historical Gold Rates (Last 10 Days)</h2>
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>22K Gold (8g)</th>
-                            <th>Change</th>
-                            <th>24K Gold (8g)</th>
-                            <th>Change</th>
-                        </tr>
-                    </thead>
-                    <tbody id="goldTable">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>Data is updated daily from Coimbatore market sources. Prices are indicative and may vary.</p>
-            <p>© 2026 Gold Rate Dashboard • Last updated: 28 February 2026</p>
-        </div>
+            <!-- Card 5: Historical Data Table -->
+<div class="card" style="grid-column: span 2;">
+    <div class="card-title">
+        <i class="fas fa-history"></i>
+        <h2>Historical Gold Rates (Last 10 Days)</h2>
     </div>
-
-    <script>
+    <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background: var(--gold-bg);">
+                    <th style="padding: 15px; text-align: left; color: var(--gold-dark);">Date</th>
+                    <th style="padding: 15px; text-align: left; color: var(--gold-dark);">22K Gold (8g)</th>
+                    <th style="padding: 15px; text-align: left; color: var(--gold-dark);">Change</th>
+                    <th style="padding: 15px; text-align: left; color: var(--gold-dark);">24K Gold (8g)</th>
+                    <th style="padding: 15px; text-align: left; color: var(--gold-dark);">Change</th>
+                </tr>
+            </thead>
+            <tbody id="goldTable">
+                <!-- Filled by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</div>
     // ========== API CONFIGURATION ==========
    const API_BASE = 'https://gold-tracker-api-gwoo.onrender.com/api';
 
@@ -714,17 +709,17 @@ function predictPrice(timeframe) {
         setInterval(loadCurrentRates, 300000);
     });
 
-   const tableData = [
-    { date: '01 Mar 2026', gold22k: '₹1,22,176', change22k: '2,576 ▲', gold24k: '₹1,27,672', change24k: '2,704 ▲' },
-    { date: '28 Feb 2026', gold22k: '₹1,21,600', change22k: '1,400 ▲', gold24k: '₹1,27,072', change24k: '1,468 ▲' },
-    { date: '27 Feb 2026', gold22k: '₹1,20,200', change22k: '2,200 ▲', gold24k: '₹1,25,604', change24k: '2,304 ▲' },
-    { date: '26 Feb 2026', gold22k: '₹1,18,000', change22k: '1,040 ▲', gold24k: '₹1,23,300', change24k: '1,096 ▲' },
-    { date: '25 Feb 2026', gold22k: '₹1,17,200', change22k: '800 ▲', gold24k: '₹1,22,460', change24k: '840 ▲' },
-    { date: '24 Feb 2026', gold22k: '₹1,16,400', change22k: '600 ▲', gold24k: '₹1,21,620', change24k: '630 ▲' },
-    { date: '23 Feb 2026', gold22k: '₹1,15,800', change22k: '400 ▲', gold24k: '₹1,20,990', change24k: '420 ▲' },
-    { date: '22 Feb 2026', gold22k: '₹1,15,400', change22k: '200 ▲', gold24k: '₹1,20,570', change24k: '210 ▲' },
-    { date: '21 Feb 2026', gold22k: '₹1,15,200', change22k: '50 ▲', gold24k: '₹1,20,360', change24k: '60 ▲' },
-    { date: '20 Feb 2026', gold22k: '₹1,15,150', change22k: '100 ▼', gold24k: '₹1,20,300', change24k: '110 ▼' }
+  const tableData = [
+    { date: '01 Mar 2026', gold22k: '₹1,22,176', change22k: '+2,576 ▲', gold24k: '₹1,27,672', change24k: '+2,704 ▲' },
+    { date: '28 Feb 2026', gold22k: '₹1,21,600', change22k: '+1,400 ▲', gold24k: '₹1,27,072', change24k: '+1,468 ▲' },
+    { date: '27 Feb 2026', gold22k: '₹1,20,200', change22k: '+2,200 ▲', gold24k: '₹1,25,604', change24k: '+2,304 ▲' },
+    { date: '26 Feb 2026', gold22k: '₹1,18,000', change22k: '+1,040 ▲', gold24k: '₹1,23,300', change24k: '+1,096 ▲' },
+    { date: '25 Feb 2026', gold22k: '₹1,17,200', change22k: '+800 ▲', gold24k: '₹1,22,460', change24k: '+840 ▲' },
+    { date: '24 Feb 2026', gold22k: '₹1,16,400', change22k: '+600 ▲', gold24k: '₹1,21,620', change24k: '+630 ▲' },
+    { date: '23 Feb 2026', gold22k: '₹1,15,800', change22k: '+400 ▲', gold24k: '₹1,20,990', change24k: '+420 ▲' },
+    { date: '22 Feb 2026', gold22k: '₹1,15,400', change22k: '+200 ▲', gold24k: '₹1,20,570', change24k: '+210 ▲' },
+    { date: '21 Feb 2026', gold22k: '₹1,15,200', change22k: '+50 ▲', gold24k: '₹1,20,360', change24k: '+60 ▲' },
+    { date: '20 Feb 2026', gold22k: '₹1,15,150', change22k: '-100 ▼', gold24k: '₹1,20,300', change24k: '-110 ▼' }
 ];
     const tableBody = document.getElementById('goldTable');
     tableData.forEach(row => {
